@@ -2,6 +2,7 @@ import { parseCSV } from "../src/basic-parser";
 import * as path from "path";
 
 const PEOPLE_CSV_PATH = path.join(__dirname, "../data/people.csv");
+const PEOPLE_NO_HEADER_CSV_PATH = path.join(__dirname, "../data/people-no-header.csv"); 
 
 test("parseCSV yields arrays", async () => {
   const results = await parseCSV(PEOPLE_CSV_PATH)
@@ -20,3 +21,23 @@ test("parseCSV yields only arrays", async () => {
     expect(Array.isArray(row)).toBe(true);
   }
 });
+
+test("parseCSV works with and without header row", async () =>{
+  const results = await parseCSV(PEOPLE_NO_HEADER_CSV_PATH);
+  const resultsWithHeader = await parseCSV(PEOPLE_CSV_PATH); 
+  expect(resultsWithHeader).toHaveLength(resultsWithHeader.length - 1); 
+  expect(results).toHaveLength(results.length);
+})
+
+test("parseCSV works with quotes", async () =>{
+  const results = await parseCSV(PEOPLE_NO_HEADER_CSV_PATH)
+  expect(results[0]).toEqual(["Tim Nelson", "CS0320, Intro to SWE", "instructor"]); 
+  expect(results[2]).toEqual(["Bob", "CS0320", "student"]); 
+})
+
+test("parseCSV trims whitespace", async () => {
+  const results = await parseCSV(PEOPLE_NO_HEADER_CSV_PATH)
+  expect(results[3]).toEqual(["Jane Doe", "CS1430", "student"])
+})
+
+
