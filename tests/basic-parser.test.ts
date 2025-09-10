@@ -4,6 +4,7 @@ import * as path from "path";
 
 const PEOPLE_CSV_PATH = path.join(__dirname, "../data/people.csv");
 const PEOPLE_NO_HEADER_CSV_PATH = path.join(__dirname, "../data/people-no-header.csv"); 
+const ICECREAM_CSV_PATH = path.join(__dirname, "../data/icecream.csv"); 
 
 test("parseCSV yields arrays", async () => {
   const results = await parseCSV(PEOPLE_CSV_PATH, undefined)
@@ -41,4 +42,7 @@ test("parseCSV trims whitespace", async () => {
   expect(results[3]).toEqual(["Jane Doe", "CS1430", "student"])
 })
 
-
+test("parseCSV works with integers", async () =>{
+  const results = await parseCSV(ICECREAM_CSV_PATH, undefined)
+  expect(results[0]).toEqual(["strawberry", "6"]); 
+}) 
