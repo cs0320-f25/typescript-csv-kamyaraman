@@ -1,0 +1,28 @@
+Was not super sure whether or not to put this in a separate reflection document or in the README
+so I did both 
+#1 Correctness
+A good CSV parser is 'correct' if it has the following properties: 
+- Maintains the integrity of data and maintains consistent data types amongst columns
+- Report when the CSV parser recieves bad data that causes a violation of this integrity 
+- Handle a variety of different schemas and generic types 
+- Handle headers 
+- Handle quoted strings
+- Handle whitespace
+- more broadly, a good CSV parser is tailored to the type of application it is being deployed 
+so should be easily extensible for multiple contexts 
+
+#2 Random, On Demand Generation 
+This random source of data could expand the power of testing because it can test a variety 
+of different schemas and types without having to hand write individual tests with custom CSV files. 
+If it could randomly generate typos and errors, then more general cases and bugs could be tested,
+while edge cases may still need to be manually checked for. 
+
+#3 Overall experience, bugs encountered and resolved 
+This sprint differed from prior programming assignemtns through its AI policy and focus on testing
+before development. I was surprised by the prompted use of AI, and appreciated testing an existing 
+application before immediately adding new functionality. I encountered a few bugs during work that 
+were mostly syntax related as I got used to workign in TypeScript. I addressed these by either looking
+up the syntax or referencing the cs32 TypeScript guide. 
+
+
+
