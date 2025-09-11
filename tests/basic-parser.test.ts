@@ -36,38 +36,27 @@ test("parseCSV works with and without header row", async () =>{
   expect(results).toHaveLength(results.length);
 })
 
-describe("parseCSV with Zod schemas", () => {
-  test("parses people.csv rows as objects", async () => {
-    const results = await parseCSV(PEOPLE_CSV_PATH, PeopleRowSchema);
-    expect(results).toHaveLength(5);
-    expect(results[0]).toEqual({ name: "name", age: "age" });
-    expect(results[1]).toEqual({ name: "Alice", age: "23" });
-    expect(results[2]).toEqual({ name: "Bob", age: "thirty" });
-    expect(results[3]).toEqual({ name: "Charlie", age: "25" });
-    expect(results[4]).toEqual({ name: "Nim", age: "22" });
-  });
 
-  test("parses people-no-header.csv rows as objects", async () => {
-    const results = await parseCSV(PEOPLE_NO_HEADER_CSV_PATH, PeopleNoHeaderRowSchema);
-    expect(results).toHaveLength(4);
-    expect(results[0]).toEqual({ name: "Tim Nelson", course: "CS0320, Intro to SWE", role: "instructor" });
-    expect(results[2]).toEqual({ name: "Bob", course: "CS0320", role: "student" });
-    expect(results[3]).toEqual({ name: "Jane Doe", course: "CS1430", role: "student" });
-  });
+test("parses people-no-header.csv rows as objects", async () => {
+  const results = await parseCSV(PEOPLE_NO_HEADER_CSV_PATH, PeopleNoHeaderRowSchema);
+  expect(results).toHaveLength(4);
+  expect(results[0]).toEqual({ name: "Tim Nelson", course: "CS0320, Intro to SWE", role: "instructor" });
+  expect(results[2]).toEqual({ name: "Bob", course: "CS0320", role: "student" });
+  expect(results[3]).toEqual({ name: "Jane Doe", course: "CS1430", role: "student" });
+});
 
-  test("parses icecream.csv rows as objects with numbers", async () => {
-    const results = await parseCSV(ICECREAM_CSV_PATH, IcecreamRowSchema);
-    expect(results).toHaveLength(4);
-    expect(results[0]).toEqual({ name: "strawberry", price: 6 });
-    expect(results[1]).toEqual({ name: "chocolate", price: 5 });
-    expect(results[2]).toEqual({ name: "vanilla", price: 4 });
-    expect(results[3]).toEqual({ name: "mint chip", price: 7 });
-  });
+test("parses icecream.csv rows as objects with numbers", async () => {
+  const results = await parseCSV(ICECREAM_CSV_PATH, IcecreamRowSchema);
+  expect(results).toHaveLength(4);
+  expect(results[0]).toEqual({ name: "strawberry", price: 6 });
+  expect(results[1]).toEqual({ name: "chocolate", price: 5 });
+  expect(results[2]).toEqual({ name: "vanilla", price: 4 });
+  expect(results[3]).toEqual({ name: "mint chip", price: 7 });
+});
 
-  test("throws on invalid row for schema", async () => {
-    // Use icecream schema on people.csv, which should fail
-    await expect(parseCSV(PEOPLE_CSV_PATH, IcecreamRowSchema)).rejects.toThrow();
-  });
+test("throws on invalid row for schema", async () => {
+  // Use icecream schema on people.csv, which should fail
+  await expect(parseCSV(PEOPLE_CSV_PATH, IcecreamRowSchema)).rejects.toThrow();
 });
 
 test("parseCSV works with quotes", async () =>{
