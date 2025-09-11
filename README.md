@@ -14,8 +14,6 @@
 
     "As a user of the CSV parser, I can include a string with commas as long as it is enclosed within quotations without it being parsed as individual elements. The quotes are not included in the parsed string"
 
-    Acceptance Criteria: 
-
     2. Functionality: Handling Headers (came from both)
 
     "As a user of the CSV parser, I can provide data with and without a header. If my data comes with a 
@@ -31,7 +29,7 @@
 
     Include your notes from above: what were your initial ideas, what did the LLM suggest, and how did the results differ by prompt? What resonated with you, and what didn’t? (3-5 sentences.) 
 
-    My initial ideas were to make the caller of the function specify if there is a header, ensure that quoted commas are handled properly, and the CSV parser can enforce type constraints if given a header. The LLM initally suggested custom delimiters, newline handling, non-UTF encoding supports,and inconsistent length error tolerance, as well as type conversion and quote handling. There was some overlap between what I initially thought of, as well as some new bugs I missed like inconsistent lengths and newline handling. On the other hand custom delimiters and non-UTF encoding support is a low priority change  for a simple CSV parser. The more abstract questions I asked, the more general and key features it suggested, while also suggesting unneeded next steps that went out of the scope of this project 
+    My initial ideas were to make the caller of the function specify if there is a header, ensure that quoted commas are handled properly, and having the CSV parser enforce type constraints if given a header. The LLM initally suggested custom delimiters, newline handling, non-UTF encoding supports,and inconsistent length error tolerance, as well as type conversion and quote handling. There was some overlap between what I initially thought of, as well as some new bugs I missed like inconsistent lengths and newline handling. On the other hand custom delimiters and non-UTF encoding support is a low priority change  for a simple CSV parser. The more abstract questions I asked, the more general and essential features it suggested, while also suggesting unneeded next steps that went out of the scope of this project. 
 
 ### Design Choices
 
@@ -63,11 +61,19 @@ up the syntax or referencing the cs32 TypeScript guide.
 
 
 #### Errors/Bugs:
+The CSV Parser does not handle headers or quoted commas properly. Zod errors are currently not
+handled by the caller of parse
 #### Tests:
-#### How To…
+Wrote tests for edge cases for basic functionality of a CSV parser, and basic tests for ZOD schemas 
+#### How 
+npm run run 
+
 
 #### Team members and contributions (include cs logins):
-
-#### Collaborators (cslogins of anyone you worked with on this project and/or generative AI):
-#### Total estimated time it took to complete project:
+N/A 
+#### Collaborators (cslogins of anyone you worked with on this project and/or generative AI): 
+Used generative AI for brainstorming tests and added functionalities 
+#### Total estimated time it took to complete project: 
+3 hours 
 #### Link to GitHub Repo:  
+https://github.com/cs0320-f25/typescript-csv-kamyaraman
